@@ -1,0 +1,12 @@
+﻿services:
+  storedb:
+    image: mongo
+
+  pruebatecnica:
+    image: pruebatecnica
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+volumes:
+  store_mongo_data:

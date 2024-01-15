@@ -1,0 +1,18 @@
+services:
+  storedb:
+    container_name: storedb
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - store_mongo_data:/data/db
+
+  pruebatecnica:
+    container_name: pruebatecnica
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://storedb:27017"
+    depends_on:
+      - storedb
+    ports:
+      - "9100:8080"
